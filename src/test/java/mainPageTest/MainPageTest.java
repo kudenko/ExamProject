@@ -9,5 +9,6 @@ public class MainPageTest extends ParentTest{
 
     public void openMainPage(){
         mainPage.openMainPage();
+        mainPage.isTsnLogoPresent();
     }
 }
