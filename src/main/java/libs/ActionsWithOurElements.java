@@ -5,7 +5,10 @@ import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 
 public class ActionsWithOurElements {
 
@@ -111,6 +114,16 @@ public class ActionsWithOurElements {
             logger.info("Selected element " + element + " with option " + option);
         }catch (Exception e){
                 logErrorStopAndStopTest();
+        }
+    }
+
+    public static int countElements(List<WebElement> allElements){
+        try{
+            return allElements.size();
+        }catch(Exception e){
+            logger.error("Can't count elements");
+            Assert.fail("Can't count elements");
+            return -1;
         }
     }
 
