@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
@@ -53,6 +54,15 @@ public class ActionsWithOurElements {
      */
     public static void clickEnter(WebElement element){
         element.sendKeys(Keys.ENTER);
+    }
+
+    /**
+     * Method clicks ENTER without element.
+     */
+    public static void clickEnterKey (WebDriver webDriver){
+        Actions action = new Actions(webDriver);
+        action.sendKeys(Keys.ENTER);
+        action.perform();
     }
 
     /**

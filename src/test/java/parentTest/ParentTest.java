@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pages.ArticlePage;
 import pages.MainPage;
 import pages.SearchPage;
+import pages.categories.VideoPage;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -16,6 +17,7 @@ public class ParentTest {
     protected MainPage mainPage;
     protected SearchPage searchPage;
     protected ArticlePage articlePage;
+    protected VideoPage videoPage;
 
     @Before
 
@@ -28,6 +30,7 @@ public class ParentTest {
         mainPage = new MainPage(webDriver);
         searchPage = new SearchPage(webDriver);
         articlePage = new ArticlePage(webDriver);
+        videoPage = new VideoPage(webDriver);
     }
 
     @After
