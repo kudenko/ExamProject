@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.ArticlePage;
 import pages.MainPage;
+import pages.ProfilePage;
 import pages.SearchPage;
 import pages.categories.VideoPage;
 
@@ -18,6 +19,7 @@ public class ParentTest {
     protected SearchPage searchPage;
     protected ArticlePage articlePage;
     protected VideoPage videoPage;
+    protected ProfilePage profilePage;
 
     @Before
 
@@ -31,6 +33,7 @@ public class ParentTest {
         searchPage = new SearchPage(webDriver);
         articlePage = new ArticlePage(webDriver);
         videoPage = new VideoPage(webDriver);
+        profilePage = new ProfilePage(webDriver);
     }
 
     @After

@@ -9,6 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class MainPage extends ParentPage{
 
     @FindBy(xpath = ".//a[@class='c-logo js-logo']")
@@ -31,6 +33,12 @@ public class MainPage extends ParentPage{
 
     @FindBy(xpath = ".//span[contains (text(), 'Sergey')]")
     private WebElement textAfterLogin;
+
+    @FindBy (xpath = ".//div[@class='c-nav-unit u-show-on-compression u-join-on-compression']")
+    private WebElement accountLogo;
+
+    @FindBy(xpath = ".//a[@class='u-url u-uid c-post-img-wrap']")
+    private List<WebElement> listOfArticlesHeaders;
 
     WebDriverWait wait;
 
@@ -70,4 +78,12 @@ public class MainPage extends ParentPage{
             Assert.fail("Cannot open URL");
         }
     }
+
+     public void enterAccount(){
+            clickOnElement(accountLogo);
+     }
+
+     public void goToFirstArticle(){
+         webDriver.get(listOfArticlesHeaders.get(2).getAttribute("href"));
+     }
 }

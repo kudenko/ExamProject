@@ -4,6 +4,7 @@ import static libs.ActionsWithOurElements.*;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 public class ArticlePage extends ParentPage{
@@ -19,6 +20,18 @@ public class ArticlePage extends ParentPage{
 
     @FindBy(xpath = ".//abbr[@title='Українська']")
     protected WebElement uaSwitcherIcon;
+
+    @FindBy(xpath = ".//h1[@class='p-name c-post-title u-uppercase']")
+    protected WebElement articleName;
+
+    @FindBy(xpath = ".//*[@class='c-fav js-favorite']")
+    protected WebElement favouriteArticleItem;
+
+    @FindBy(xpath = ".//*[@class='c-fav js-favorite is-fav']")
+    protected WebElement favouriteArticleActiveItem;
+
+    @FindBy(xpath = ".//a[@href='/profile']")
+    protected WebElement profileIcon;
 
     public ArticlePage (WebDriver webDriver){
         super(webDriver);
@@ -67,5 +80,19 @@ public class ArticlePage extends ParentPage{
         }
     }
 
+    public String getArticleName(){
+        return articleName.getText();
+    }
+
+    public void addArticleToFavourite() {
+        if (isElementPresent(favouriteArticleActiveItem)) {
+        } else {
+            clickOnElement(favouriteArticleItem);
+        }
+    }
+
+    public void goToProfilePageClickIcon(){
+        clickOnElement(profileIcon);
+    }
 
 }
