@@ -4,7 +4,6 @@ import static libs.ActionsWithOurElements.*;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 public class ArticlePage extends ParentPage{
@@ -34,7 +33,7 @@ public class ArticlePage extends ParentPage{
     protected WebElement profileIcon;
 
     public ArticlePage (WebDriver webDriver){
-        super(webDriver);
+        super(webDriver, "/tsikavinki/poganiy-den-u-merezhi-rozkrili-istoriyu-naypershogo-viralnogo-video-v-istoriyi-1084900.html");
     }
 
     public void openArticlePage(){
@@ -47,6 +46,7 @@ public class ArticlePage extends ParentPage{
         }
     }
 
+
     public void switchToUaLang(){
         clickOnElement(uaSwitcherIcon);
     }
@@ -55,28 +55,21 @@ public class ArticlePage extends ParentPage{
         clickOnElement(ruSwitcherIcon);
     }
 
-    public void switchingLanguagesOnArticlePage(){
-        openArticlePage();
+    public void checkUaTextOnThePage(){
         if(!isElementPresent(ukLangText)){
             logger.error("UA language didn't works");
             Assert.fail("UA language didn't works");
         }else {
             logger.info("saw UA text on page");
         }
+    }
 
-        switchToRuLang();
+    public void checkRuTextOnThePage(){
         if(!isElementPresent(ruLangText)){
-            logger.error("Ru language didn't works");
+            logger.error("RU language didn't works");
             Assert.fail("RU language didn't works");
         }else {
             logger.info("saw RU text on page");
-        }
-        switchToUaLang();
-        if(!isElementPresent(ukLangText)){
-            logger.error("UA language didn't works");
-            Assert.fail("UA language didn't works");
-        }else {
-            logger.info("saw UA text on page");
         }
     }
 
@@ -86,13 +79,36 @@ public class ArticlePage extends ParentPage{
 
     public void addArticleToFavourite() {
         if (isElementPresent(favouriteArticleActiveItem)) {
+            logger.info("Article is already in favourites. Repeat test");
         } else {
             clickOnElement(favouriteArticleItem);
         }
     }
 
-    public void goToProfilePageClickIcon(){
+    public void clickProfileIcon(){
         clickOnElement(profileIcon);
     }
 
+    public String getUrlAddedArticle(){
+        return webDriver.getCurrentUrl();
+    }
+
+    public void openAddArticlePage(String url){
+        try{
+            webDriver.get(url);
+        }catch (Exception e){
+            logger.error("Cannot get url of added favourite article");
+        }
+    }
+
+    public void removeFavouriteArticle(){
+        if (isElementPresent(favouriteArticleActiveItem)) {
+            clickOnElement(favouriteArticleActiveItem);
+            logger.info("Article was removed successfully");
+        } else {
+            if(isElementPresent(favouriteArticleItem)){
+                logger.info("Article wasn't favourite");
+            }
+        }
+    }
 }

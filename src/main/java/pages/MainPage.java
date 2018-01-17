@@ -43,7 +43,7 @@ public class MainPage extends ParentPage{
     WebDriverWait wait;
 
     public MainPage(WebDriver webDriver){
-        super(webDriver);
+        super(webDriver, "/");
         wait = new WebDriverWait(webDriver, 10);
     }
 
@@ -51,25 +51,30 @@ public class MainPage extends ParentPage{
     return isElementPresent(tsnLogo);
     }
 
-    public void enterPage(String login, String pass){
-        openMainPage();
+    public void clickLoginIcon(){
         clickOnElement(userLoginForClick);
+    }
+
+    public void writeLoginData(String login, String pass){
         wait.until(ExpectedConditions.visibilityOf(modalWindowEnter));
         enterTextInToInput(userLogin, login);
         enterTextInToInput(userPass, pass);
-        clickEnter(buttonSubmit);
-        isElementPresent(textAfterLogin);
     }
 
-//    public void enterLogIntoInput(WebElement userLogn, String login){
-//        enterTextInToInput(userLogn, "ky_se_se@mail.ru");
-//    }
-//
-//    public void enterPassIntoInnput(WebElement userPass, String pass){
-//        enterTextInToInput(userPass, "BGyYH4");
-//    }
+    public void pressLoginButton(){
+        clickEnter(buttonSubmit);
+    }
 
-        public void openMainPage(){
+    public void checkLoginSuccess(){
+        if(isElementPresent(textAfterLogin)){
+            logger.info("loggin was successful");
+        }else{
+            logger.error("login was unsuccessful");
+            Assert.fail("login was unsuccessful");
+        }
+    }
+
+    public void openMainPage(){
         try{
             webDriver.get("https://tsn.ua/");
             logger.info("TSN main page was opened");
@@ -79,11 +84,11 @@ public class MainPage extends ParentPage{
         }
     }
 
-     public void enterAccount(){
-            clickOnElement(accountLogo);
-     }
+//    public void enterAccount(){
+//            clickOnElement(accountLogo);
+//     }
 
-     public void goToFirstArticle(){
+    public void goToFirstArticle(){
          webDriver.get(listOfArticlesHeaders.get(2).getAttribute("href"));
-     }
+    }
 }

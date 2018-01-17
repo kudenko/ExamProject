@@ -18,10 +18,10 @@ public class ProfilePage extends ParentPage{
     private List<WebElement> listOfArticleSInProfile;
 
     public ProfilePage(WebDriver webDriver){
-        super(webDriver);
+        super(webDriver, "");
     }
 
-    public void checkAutorization(){
+    public void checkAutorisationSuccess(){
         if(!isElementPresent(messageNotAutirized)){
             logger.info("User logged in profile");
         }else{
@@ -30,9 +30,6 @@ public class ProfilePage extends ParentPage{
     }
 
     public void checkFirstArticle(String addedArticle){
-        System.out.println(listOfArticleSInProfile.get(0).getText());
-        System.out.println(addedArticle);
-
 
         if(listOfArticleSInProfile.get(0).getText().toLowerCase().equals(addedArticle.toLowerCase())){
            logger.info("Article was added successfully");

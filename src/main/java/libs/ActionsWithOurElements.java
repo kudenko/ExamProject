@@ -88,17 +88,25 @@ public class ActionsWithOurElements {
      */
     public static void setStateToCheckBox(WebElement element, String neededState){
 
+        final String CHECK_STATUS = "checked";
+        final String UNCHECKED_STATUS = "unchecked";
+
+        if(!CHECK_STATUS.equals(neededState) && !UNCHECKED_STATUS.equals(neededState)){
+            logger.error("You entered wrong string to checkbox");
+            Assert.fail("You entered wrong string to checkbox");
+        }
+
         isElementPresent(element);
 
         try{
 
-            if(neededState.equals("checked")){
+            if(neededState.equals(CHECK_STATUS)){
                 if(!element.isSelected()){
                     element.click();
                 }
             }
 
-            if(neededState.equals("unchecked")){
+            if(neededState.equals(UNCHECKED_STATUS)){
                 if(element.isSelected()){
                     element.click();
                 }

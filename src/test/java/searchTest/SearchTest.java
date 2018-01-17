@@ -7,9 +7,12 @@ public class SearchTest extends ParentTest {
 
     @Test
 
-    public void openSearchPageAndSearch(){
+    public void searchTest(){
         searchPage.openSearchPage();
-        searchPage.enterSearchStringAndSearch("авто");
+        searchPage.checkCurrentUlr();
+        searchPage.enterSearchString("авто");
+        searchPage.pressSearchButton();
+        searchPage.checkSearcheResults();
     }
 
 }

@@ -21,7 +21,7 @@ public class SearchPage extends ParentPage{
 
 
     public SearchPage(WebDriver webDriver){
-        super(webDriver);
+        super(webDriver, "/search");
     }
 
     public void openSearchPage(){
@@ -34,13 +34,15 @@ public class SearchPage extends ParentPage{
         }
     }
 
-    public void enterSearchStringAndSearch(String search){
+    public void enterSearchString(String search){
         enterTextInToInput(queryField, search);
-        clickEnter(searchButton);
-        countSearchArticles(allSearchedArticles);
     }
 
-    protected void countSearchArticles(List<WebElement> allSearchedArticles){
+    public void pressSearchButton(){
+        clickEnter(searchButton);
+    }
+
+    public void checkSearcheResults(){
         if(countElements(allSearchedArticles) < 10 ){
             logger.error("Search did't find articles");
             Assert.fail("Search did't find articles");

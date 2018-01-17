@@ -18,10 +18,10 @@ public class VideoPage extends ParentPage{
     protected List<WebElement> playerFrame;
 
     public VideoPage(WebDriver webDriver){
-        super(webDriver);
+        super(webDriver, "/video/video-novini");
     }
 
-    public void openSearchPage(){
+    public void openVideoCategoryTest(){
         try{
             webDriver.get("https://tsn.ua/video/video-novini");
             logger.info("TSN category video page was opened");
@@ -31,7 +31,7 @@ public class VideoPage extends ParentPage{
         }
     }
 
-    public void presentVideoInMainBlock(){
+    public void checkPresentVideoSrcInMainBlock(){
 
         if(isElementPresent(videoInTopOfVideoPage) && videoInTopOfVideoPage.getAttribute("src").length() >= 41){
             logger.info("Video is on the page");
