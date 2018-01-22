@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -15,10 +16,13 @@ public class ActionsWithOurElements {
 
    WebDriver webDriver;
     static Logger logger =  Logger.getLogger("ActionsWithOurElements");
+    static WebDriverWait webDriverWait20;
 
-//    public ActionsWithOurElements(WebDriver webDriver) {
-//       this.webDriver = webDriver;
-//    }
+
+    public ActionsWithOurElements(WebDriver webDriver) {
+       this.webDriver = webDriver;
+       webDriverWait20 = new WebDriverWait(webDriver, 20);
+    }
 
     /**
      * Method puts text into input or textareas
@@ -41,6 +45,7 @@ public class ActionsWithOurElements {
      */
     public static void clickOnElement(WebElement element){
         try{
+            webDriverWait20.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
             logger.info(element + " was clcicked");
         }catch (Exception e){
